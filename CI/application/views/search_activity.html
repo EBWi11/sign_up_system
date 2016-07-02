@@ -1,0 +1,76 @@
+<html>
+<head>
+  <title>详细信息查询</title>
+  <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+  <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+  <script>
+  function check_class() {
+    var class_no = $("#check_class").val();
+    if (class_no)
+      location.href = "../home/check_class/" + class_no;
+    else {alert("请输入需查询班级!");}
+  }
+
+  function check_student()
+  {
+    var number = $("#check_student").val();
+    if(number)
+      location.href = "../home/check_student/"+number;
+    else {alert("请输入需查询学号!");}
+  }
+
+  function check_class_situation()
+  {
+    var class_no = $("#check_class_situation").val();
+    if(class_no)
+      location.href = "../home/check_class_situation/"+class_no;
+    else {alert("请输入需查询班级!");}
+  }
+  function check_major_situation()
+  {
+    var major = $("#check_major_situation").val();
+    if(major)
+      location.href = "../home/check_major_situation/"+major;
+    else {alert("请输入需查询年份!");}
+  }
+  function check_grade_situation()
+  {
+    var grade = $("#check_grade_situation").val();
+    if(grade)
+      location.href = "../home/check_grade_situation/"+grade;
+    else {alert("请输入需查询年份!");}
+  }
+  </script>
+  <style>
+    .buttons{margin-left: 10%;margin-right: 15%}
+    .footer{position: fixed;  bottom:0;  left:0;  width:100%;  background-color:#0a0a0b ;  border-style:solid;  border-top-color: #1f1f1f;  color: #fef6ff;}
+    </style>
+</head>
+<body>
+  <br>
+  <br>
+<div class="panel panel-primary buttons">
+  <div class="panel-heading">
+    <h2 class="panel-title">详细信息查询</h2>
+  </div>
+  <div class="panel-body">
+    按班级查看:<input type = "text" id = "check_class"/>
+    <input type = "button" onclick = "check_class()" value = "查看" class = "btn btn-primary"/><br><br>
+    按学号查看:<input type = "text" id = "check_student"/>
+    <input type = "button" onclick = "check_student()" value = "查看" class = "btn btn-primary"/><br><br>
+    按班级查看整体情况:<input type = "text" id = "check_class_situation"/>
+    <input type = "button" onclick = "check_class_situation()" value = "查看" class = "btn btn-primary"/><br><br>
+    按专业查看整体情况(请输入需要查询年份):<input type = "text" id = "check_major_situation"/>
+    <input type = "button" onclick = "check_major_situation()" value = "查看" class = "btn btn-primary"/><br><br>
+    按年级查看整体情况(请输入需要查询年份):<input type = "text" id = "check_grade_situation"/>
+    <input type = "button" onclick = "check_grade_situation()" value = "查看" class = "btn btn-primary"/><br><br>
+  </div>
+</div>
+
+</body>
+<div>
+  <br><br>
+  <p align="center">上海电力学院 计算机与技术学院 2013055创新创业班</p>
+</div>
+</html>

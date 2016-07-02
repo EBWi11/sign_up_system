@@ -1,0 +1,107 @@
+<html>
+<head>
+    <title>管理管理员</title>
+    <script src = "../../jquery-2.1.1.js"></script>
+    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <style>
+        .admin{margin-left: 10%;margin-right: 10%}
+        .button_1{margin-left: 87%}
+        .error{ color: #ff0c00;}
+        .footer{position: fixed;  bottom:0;  left:0;  width:100%;  background-color:#0a0a0b ;  border-style:solid;  border-top-color: #1f1f1f;  color: #fef6ff;}
+    </style>
+    <script>
+        function delete_admin(uid)
+        {
+            $.ajax({
+                type:"post",
+                url:"delete_admin",
+                dataType:"json",
+                data:'uid='+uid,
+                success:function(req){
+                    location.href = "manage_admin";
+                }
+            });
+        }
+
+        function add_admin()
+        {
+            var uid = $("#uid").val();
+            var pwd = $("#pwd").val();
+            if(uid && pwd)
+            {
+                if(pwd.length<8)
+                {
+                    document.getElementById('error').innerHTML = "密码长度不得小于8位!";
+                }
+                else
+                {
+                    $.ajax({
+                        type:"post",
+                        url:"add_admin",
+                        dataType:"json",
+                        data:'uid='+uid+'&pwd='+pwd,
+                        success:function(req){
+                            location.href = "manage_admin";
+                        }
+                    });
+                }
+            }
+            else
+            {
+                document.getElementById('error').innerHTML = "请输入完整信息";
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    添加管理员
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form class="bs-example bs-example-form" role="form">
+                <div class="input-group">
+                    <span class="input-group-addon">&nbsp;&nbsp;用户名&nbsp;&nbsp;</span>
+                    <input type="text" class="form-control" placeholder="UID" id = "uid">
+                </div>
+                <br>
+            </form>
+                <form class="bs-example bs-example-form" role="form">
+                    <div class="input-group">
+                        <span class="input-group-addon">登录密码:</span>
+                        <input type="password" class="form-control" placeholder="PASSWORD" id = "pwd">
+                    </div>
+                    <br>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <p class="error" id="error"></p>
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary" onclick="add_admin()">
+                    提交更改
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+</body>
+<footer class="footer">
+    <div>
+        <br><br>
+        <p align="center">上海电力学院 计算机与技术学院 2013055创新创业班</p>
+    </div>
+</footer>
+<html>

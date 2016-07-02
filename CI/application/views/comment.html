@@ -1,0 +1,52 @@
+<html>
+<head>
+  <title>提交意见</title>
+  <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+  <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+  <script>
+  function comment()
+  {
+    var number = $("#number").val();
+    var aid = $("#aid").val();
+    var comment = $("#comment").val();
+    if(comment.length>=15)
+    {
+      $.post("../../add_comment", { aid:aid,number:number,comment:comment} );
+      location.reload(true);
+    }
+    else {
+      alert("评论请不少于15字！");
+    }
+  }
+  </script>
+  <style>
+    .panel-body{margin-left: 5%;margin-right: 10%;}
+    .panel{margin-left: 30%;margin-right: 30%;}
+    .footer{position: fixed;  bottom:0;  left:0;  width:100%;  background-color:#0a0a0b ;  border-style:solid;  border-top-color: #1f1f1f;  color: #fef6ff;}
+
+  </style>
+</head>
+<body>
+<br><br><br>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">提交意见或建议</h3>
+      </div>
+      <div class="panel-body">
+        <textarea type = "text" rows="3" cols="40" id = "comment"></textarea><br><br>
+        <input  class = "btn btn-info" type = "button" value = "匿名提交" onclick = "comment()">
+      </div>
+      </div>
+    <input value = <?php echo $number; ?> id = "number"  hidden="hidden"/>
+    <input value = <?php echo $aid; ?> id = "aid"  hidden="hidden"/>
+  </div>
+</body>
+<footer class="footer">
+  <div>
+    <br><br>
+    <p align="center">上海电力学院 计算机与技术学院 2013055创新创业班</p>
+  </div>
+</footer>
+<html>

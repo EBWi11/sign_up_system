@@ -1,0 +1,46 @@
+<html>
+<head>
+  <title>add info</title>
+    <script src = "../../jquery-2.1.1.js"></script>
+    <script>
+    function add_info()
+    {
+      var name = $("#name").val();
+      var class_no = $("#class_no").val();
+      var phone = $("#phone").val();
+      var major = $("#mojor").val();
+
+      if(name && class_no && phone)
+      {
+        $.ajax({
+          type:"post",
+          url:"../home/add_info",
+          dataType:"json",
+          data:'name='+name+'&class_no='+class_no+'&phone='+phone+'&major='+major+'&email='+email,
+          success:function(req)
+          {
+            if(req.check=="1")
+            {
+              location.href = "../home/user_home";
+            }
+          }
+        });
+      }
+      else {
+        alert('请输入完整信息');
+      }
+    }
+    </script>
+</head>
+<body>
+  <h1>add info</h1>
+  <div>
+    name:<input type = "text" id = "name"/><br>
+    class_no:<input type = "text" id = "class_no"/><br>
+    phone:<input type = "text" id = "phone"/><br>
+    major:<input type = "text" id = "major"/><br>
+    email:<input type = "text" id = "email"/><br>
+    <input type = "button" onclick = "add_info()" value = "add_info"/>
+  </div>
+</body>
+<html>

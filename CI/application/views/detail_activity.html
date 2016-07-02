@@ -1,0 +1,76 @@
+<html>
+<head>
+  <title>活动详情</title>
+  <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+  <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+  <script>
+    <style>
+    .footer{position: fixed;  bottom:0;  left:0;  width:100%;  background-color:#0a0a0b ;  border-style:solid;  border-top-color: #1f1f1f;  color: #fef6ff;}
+    </style>
+  var students_data = [];
+
+  function static(s,number,aid)
+  {
+    if(s==2)
+    {
+      $.post("../change_static", { number:number,aid:aid} );
+      location.href = "../detail_activity/"+aid;
+    }
+  }
+
+  function obtain()
+  {
+    <?php foreach ($list as $item):?>
+    students_data.push(<?php echo $item;?>);
+    <?php endforeach;?>
+  }
+
+  obtain();
+
+  function checkbox()
+  {
+    $('input:checkbox').each(function() {
+        $(this).prop('checked', true);
+      });
+  }
+
+  function cancel_checkbox()
+  {
+    $('input:checkbox').each(function () {
+        $(this).prop('checked',false);
+      });
+  }
+
+  function confirm()
+  {
+    for(var i = 0;i<students_data.length;i++)
+    {
+      if($("#"+students_data[i]+"").prop("checked"))
+      {
+        var aid = $("#"+students_data+"").val();
+        $.post("../change_static", { number:students_data[i],aid:aid} );
+        location.href = "../detail_activity/"+aid;
+      }
+    }
+  }
+  </script>
+  <style>
+    .table{width: 85%;margin-left: 2%}
+    .table_button{margin-left: 4%}
+  </style>
+</head>
+<body>
+<div class = "table_button">
+<input type = "button" class = "btn btn-primary" value = "全选" onclick = "checkbox()"/>
+<input type = "button" class = "btn btn-warning" value = "取消全选" onclick = "cancel_checkbox()"/>
+<input type = "button" class = "btn btn-success" value = "确认到场" onclick="confirm()"/>
+  </div>
+<footer class="footer">
+  <div>
+    <br><br>
+    <p align="center">上海电力学院 计算机与技术学院 2013055创新创业班</p>
+  </div>
+</footer>
+</body>
+</html>
